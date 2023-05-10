@@ -25,7 +25,7 @@ def revenue_per_region(dp: DataProcessor) -> Dict:
     StockCode    , Description    , UnitPrice  , Quantity, TotalPrice , Country
     22180        , RETROSPOT LAMP , 19.96      , 4       , 79.84      , Russia
     23017        , APOTHECARY JAR , 24.96      , 1       , 24.96      , Germany
-    84732D       , IVORY CLOCK    , 0.39       , 2       , 0.78       ,India
+    84732D       , IVORY CLOCK    , 0.39       , 2       , 0.78       , India
     ...
     ...
     ...
@@ -44,6 +44,19 @@ def revenue_per_region(dp: DataProcessor) -> Dict:
     }
     """
     ######################################## YOUR CODE HERE ##################################################
+    dp = DataProcessor()
+    data_reader_gen = (row for row in dp.data_reader)
+    _ = next(data_reader_gen)
+    result = {}
+    for row in tqdm(data_reader_gen):
+        country = row['Country']
+        revenue = row['TotalPrice']
+        print(country, revenue)
+        if key in result:
+            result[country] += revenue
+        else:
+            result[country] = revenue
+    return result
 
     ######################################## YOUR CODE HERE ##################################################
 
