@@ -85,10 +85,11 @@ class DataProcessor:
         sum = 0
         for row in tqdm(data_reader_gen):
             val = row[column_name]
+            print(val)
             if type(val) == float:
                 sum += val
             else:
-                return 'column is not of float data type'
+                return f'column is not of float data type, it is {type(val)}'
         return sum
         
         ######################################## YOUR CODE HERE ##################################################
