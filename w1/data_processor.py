@@ -78,18 +78,15 @@ class DataProcessor:
 
         aggregate should be 105.58
         """
-        ######################################## YOUR CODE HERE ##################################################
 
         data_reader_gen = (row for row in self.data_reader)
         _ = next(data_reader_gen) 
         sum = 0
         for row in tqdm(data_reader_gen):
-            val = row[column_name]
-            print(val)
+            val = self.to_float(row[column_name])
             if type(val) == float:
                 sum += val
             else:
                 return f'column is not of float data type, it is {type(val)}'
         return sum
         
-        ######################################## YOUR CODE HERE ##################################################

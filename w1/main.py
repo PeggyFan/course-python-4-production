@@ -43,7 +43,7 @@ def revenue_per_region(dp: DataProcessor) -> Dict:
         'United States': 121.499
     }
     """
-    ######################################## YOUR CODE HERE ##################################################
+    
     data_reader_gen = (row for row in dp.data_reader)
     _ = next(data_reader_gen)
     result = {}
@@ -55,8 +55,6 @@ def revenue_per_region(dp: DataProcessor) -> Dict:
         else:
             result[country] = revenue
     return result
-
-    ######################################## YOUR CODE HERE ##################################################
 
 
 def get_sales_information(file_path: str) -> Dict:
