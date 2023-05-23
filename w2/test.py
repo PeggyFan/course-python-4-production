@@ -59,7 +59,7 @@ class TestApp(unittest.TestCase):
             self.db.insert(process_id=each['process_id'], start_time=each['start_time'], file_name=each['file_name'],
                            file_path=each['file_path'], description=each['description'])
 
-        time.sleep(5)
+        #time.sleep(5)
 
         for each in example_data:
             self.db.update_end_time(process_id=each['process_id'],

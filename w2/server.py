@@ -53,10 +53,14 @@ async def get() -> HTMLResponse:
     should render the HTML file - index.html when a user goes to http://127.0.0.1:8000/
     """
     ######################################## YOUR CODE HERE ##################################################
-    html_file_path = "index.html"
-    with open(html_file_path, "r") as file:
-        html_content = file.read()
-    return HTMLResponse(content=html_content, status_code=200)
+    # html_file_path = "index.html"
+    # with open(html_file_path, "r") as file:
+    #     html_content = file.read()
+    # return HTMLResponse(content=html_content, status_code=200)
+
+    with open('index.html') as file:
+        item = file.read()
+        return HTMLResponse(content=item)
     ######################################## YOUR CODE HERE ##################################################
 
 
@@ -67,11 +71,12 @@ async def get() -> List[ProcessStatus]:
     Get all the records from the process table and return it using the pydantic model ProcessStatus
     """
     ######################################## YOUR CODE HERE ##################################################
-    conn = DB._connection
-    cursor = conn.cursor()
-    cursor.exeucte(f"SELECT * FROM {DB.__table_name}")
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
-        # ProcessStatus
+    # dba=DB()
+    # lst=dba.read_all()
+    # return [ProcessStatus(**kwa) for kwa in lst]  ### -> kwargs as pydantic frmwrk
+
+    db = DB()
+    processes = db.read_all()
+    return [ProcessStatus(**proc) for proc in processes]
+
     ######################################## YOUR CODE HERE ##################################################
